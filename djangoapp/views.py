@@ -26,7 +26,6 @@ class HelloView(APIView):
         
         return Response({
             'client_ip': client_ip,
-            'location_response': client_location_response,
             'location': city,
             'greeting': greeting
         }, status=status.HTTP_200_OK)
