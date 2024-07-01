@@ -9,13 +9,12 @@ from rest_framework import status
 class HelloView(APIView):
     def get(self, request):
         visitor_name = request.query_params.get('visitor_name', 'Unspecified')
-        client_ip = request.META.get('HTTP_X_FORWARDED_FOR', request.META.get('REMOTE_ADDR', '127.0.0.1'))
+        client_ip = request.META.get('REMOTE_ADDR', '127.0.0.1')
 
         # Get client's location
         client_location_response = requests.get(f'https://ip-api.com/json/{client_ip}')
         client_location = client_location_response.json()
         city = client_location.get('city', 'Unknown')
-        city = 'Port Harcourt'
 
         # Get weather for client's location
         weather_update = requests.get(f'http://api.weatherapi.com/v1/current.json?key={settings.WEATHER_API_KEY}&q={city}')
