@@ -137,6 +137,9 @@ REST_FRAMEWORK = {
     ],
 }
 
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
+
 # Load Environment Variables
 load_dotenv(dotenv_path='.envfile')
 
